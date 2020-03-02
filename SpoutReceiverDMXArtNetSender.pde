@@ -19,9 +19,7 @@ Spout spout;
 
 //////////////////////////////////////
 import ch.bildspur.artnet.*;
-int numLeds=720;
-int numberOfChannels = numLeds * 3; // Total number of channels you want to receive (1 led = 3 channels)
-int maxUniverses = 5;
+int numLeds=170*5;
 ArtNetClient artnet;
 byte[] ledData = new byte[numLeds*3];
 
@@ -31,12 +29,24 @@ byte[] universe2 = new byte[512];
 byte[] universe3 = new byte[512];
 byte[] universe4 = new byte[512];
 byte[] universe5 = new byte[512];
+byte[] universe6 = new byte[512];
+byte[] universe7 = new byte[512];
+byte[] universe8 = new byte[512];
+byte[] universe9 = new byte[512];
+byte[] universe10 = new byte[512];
+byte[] universe11 = new byte[512];
+byte[] universe12 = new byte[512];
+byte[] universe13 = new byte[512];
+byte[] universe14 = new byte[512];
+byte[] universe15 = new byte[512];
+
+
 //////////////////////////////////////
 void setup() {
-  frameRate(110);
+  frameRate(120);
   colorMode(RGB, 255, 255, 255);
   // Initial window size
-  size(720, 1, P2D);
+  size(256, 256, P2D);
 
   // Needed for resizing the window to the sender size
   // Processing 3+ only
@@ -114,6 +124,18 @@ void draw() {
     universe1[ch]=ledData[ch+(510*1)];
     universe2[ch]=ledData[ch+(510*2)];
     universe3[ch]=ledData[ch+(510*3)];
+    universe4[ch]=ledData[ch+(510*4)];
+    //universe5[ch]=ledData[ch+(510*5)];
+    //universe6[ch]=ledData[ch+(510*6)];
+    //universe7[ch]=ledData[ch+(510*7)];
+    //universe8[ch]=ledData[ch+(510*8)];
+    //universe9[ch]=ledData[ch+(510*9)];
+    //universe10[ch]=ledData[ch+(510*10)];
+    //universe11[ch]=ledData[ch+(510*11)];
+    //universe12[ch]=ledData[ch+(510*12)];
+    //universe13[ch]=ledData[ch+(510*13)];
+    //universe14[ch]=ledData[ch+(510*14)];
+
     int lastUniverseIndex = ch + (510*4);
     if (lastUniverseIndex < numLeds*3) {
       universe4[ch]=ledData[lastUniverseIndex];
@@ -121,24 +143,25 @@ void draw() {
       universe4[ch]=(byte) 0;
     }
   }
-  universe0[510]=(byte) 0;
-  universe1[510]=(byte) 0;
-  universe2[510]=(byte) 0;
-  universe3[510]=(byte) 0;
-  universe4[510]=(byte) 0; 
-  universe0[511]=(byte) 0;
-  universe1[511]=(byte) 0;
-  universe2[511]=(byte) 0;
-  universe3[511]=(byte) 0;
-  universe4[511]=(byte) 0;
-
 
   // send dmx to localhost
-  artnet.unicastDmx("192.168.12.222", 0, 0, universe0);
-  artnet.unicastDmx("192.168.12.222", 0, 1, universe1);
-  artnet.unicastDmx("192.168.12.222", 0, 2, universe2);
-  artnet.unicastDmx("192.168.12.222", 0, 3, universe3);
-  artnet.unicastDmx("192.168.12.222", 0, 4, universe4);
+  artnet.unicastDmx("192.168.11.102", 0, 0, universe0);
+  artnet.unicastDmx("192.168.11.102", 0, 1, universe1);
+  artnet.unicastDmx("192.168.11.102", 0, 2, universe2);
+  artnet.unicastDmx("192.168.11.102", 0, 3, universe3);
+  artnet.unicastDmx("192.168.11.102", 0, 4, universe4);
+  //artnet.unicastDmx("192.168.11.102", 0, 5, universe5);
+  //artnet.unicastDmx("192.168.11.102", 0, 6, universe6);
+  //artnet.unicastDmx("192.168.11.102", 0, 7, universe7);
+  //artnet.unicastDmx("192.168.11.102", 0, 8, universe8);
+  //artnet.unicastDmx("192.168.11.102", 0, 9, universe9);
+  //artnet.unicastDmx("192.168.11.102", 0, 10, universe10);
+  //artnet.unicastDmx("192.168.11.102", 0, 11, universe11);
+  //artnet.unicastDmx("192.168.11.102", 0, 12, universe12);
+  //artnet.unicastDmx("192.168.11.102", 0, 13, universe13);
+  //artnet.unicastDmx("192.168.11.102", 0, 14, universe14);
+  //artnet.unicastDmx("192.168.11.102", 0, 15, universe15);
+
 
   //////////////////////////////////////
 }
